@@ -99,6 +99,11 @@ if 'TERM' in os.environ:
 # Pass through the java CLASSPATH (if it exists) so we can find libraries.
 main['ENV']['CLASSPATH'] = os.environ.get('CLASSPATH', '')
 
+# Pass through nix env vars.
+for k, v in os.environ.items():
+    if k.startswith('NIX_'):
+        main['ENV'][k] = v
+
 # Detect some dependencies of some forms of the m5 utility/library.
 def CheckForJavaPkg(context, pkg_name):
     context.Message('Checking for java package %s...' % pkg_name)

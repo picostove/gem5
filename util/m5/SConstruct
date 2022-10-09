@@ -184,11 +184,11 @@ native.SConscript(googletest_dir.File('SConscript'),
 native.SConscript(src_dir.File('SConscript.native'),
         variant_dir=native_dir, exports={ 'env': native })
 
-main['CC'] = '${CROSS_COMPILE}gcc'
-main['CXX'] = '${CROSS_COMPILE}g++'
-main['AS'] = '${CROSS_COMPILE}as'
-main['LD'] = '${CROSS_COMPILE}ld'
-main['AR'] = '${CROSS_COMPILE}ar'
+main['CC'] = os.environ['CC']
+main['CXX'] = os.environ['CXX']
+main['AS'] = os.environ['AS']
+main['LD'] = os.environ['LD']
+main['AR'] = os.environ['AR']
 main['QEMU'] = 'qemu-${QEMU_ARCH}'
 
 class CallType(object):
